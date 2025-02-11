@@ -125,7 +125,7 @@ This API allows users to create and manage multiple todo lists and their associa
 
 ## Running Tests
 
-### Unit tests
+1. Unit tests
 
     ```bash
     npm run test
@@ -134,7 +134,7 @@ This API allows users to create and manage multiple todo lists and their associa
 
 ## Response Format
 
-### Successful response
+1. Successful response
 
     ```bash
     {
@@ -147,7 +147,7 @@ This API allows users to create and manage multiple todo lists and their associa
 
     ```
 
-### Error Handling
+2. Error Handling
 
     ```bash
     {
@@ -161,7 +161,7 @@ This API allows users to create and manage multiple todo lists and their associa
 
     ```
 
-### Paginated responses
+3. Paginated responses
 
     ```bash
     {
