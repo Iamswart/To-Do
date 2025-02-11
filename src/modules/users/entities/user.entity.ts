@@ -5,7 +5,6 @@ import {
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
-  AfterLoad,
 } from 'typeorm';
 import { TodoList } from '../../todo-lists/entities/todo-list.entity';
 import { Exclude } from 'class-transformer';
