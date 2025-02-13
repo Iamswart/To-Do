@@ -42,7 +42,6 @@ export class TodoListRepository {
     id: string,
     options?: {
       relations?: string[];
-      includeDeleted?: boolean;
     },
     entityManager?: EntityManager,
   ): Promise<TodoList | null> {
@@ -63,7 +62,6 @@ export class TodoListRepository {
       offset?: number;
       limit?: number;
       searchTerm?: string;
-      includeDeleted?: boolean;
     },
     entityManager?: EntityManager,
   ): Promise<[TodoList[], number]> {
