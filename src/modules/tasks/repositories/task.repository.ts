@@ -9,7 +9,6 @@ import {
 } from 'typeorm';
 import { Task, TaskStatus, TaskPriority } from '../entities/task.entity';
 
-
 @Injectable()
 export class TaskRepository {
   constructor(
@@ -73,6 +72,10 @@ export class TaskRepository {
       ...(filters?.priority && { priority: filters.priority }),
     };
 
+    if (filters?.dueDateStart && filters?.dueDateEnd) {
+      whereClause.dueDate = Between(filters.dueDateStart, filters.dueDateEnd);
+    }
+
     if (filters?.searchTerm) {
       whereClause.title = Like(`%${filters.searchTerm}%`);
       return repo
@@ -87,10 +90,6 @@ export class TaskRepository {
         .orderBy('task.dueDate', 'ASC')
         .addOrderBy('task.createdAt', 'DESC')
         .getManyAndCount();
-    }
-
-    if (filters?.dueDateStart && filters?.dueDateEnd) {
-      whereClause.dueDate = Between(filters.dueDateStart, filters.dueDateEnd);
     }
 
     return repo.findAndCount({
@@ -119,7 +118,10 @@ export class TaskRepository {
     return updatedTask;
   }
 
-  async softDeleteTask(id: string, entityManager?: EntityManager): Promise<void> {
+  async softDeleteTask(
+    id: string,
+    entityManager?: EntityManager,
+  ): Promise<void> {
     const repo = entityManager
       ? entityManager.getRepository(Task)
       : this.repository;
