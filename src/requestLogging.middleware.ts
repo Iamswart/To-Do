@@ -10,8 +10,9 @@ export class RequestLoggingMiddleware implements NestMiddleware {
     const timestamp = new Date().toISOString();
 
     res.on('finish', () => {
+      const statusCode = res.statusCode;
       this.logger.log(
-        `Timestamp: ${timestamp}, Method: ${method}, Endpoint: ${originalUrl}}`,
+        `Timestamp: ${timestamp}, Method: ${method}, Endpoint: ${originalUrl}, Status: ${statusCode}}`,
       );
     });
 
